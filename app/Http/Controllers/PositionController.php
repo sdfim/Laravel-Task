@@ -12,7 +12,8 @@ use App\DataTables\PositionsDataTable;
 class PositionController extends Controller
 {
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('checkauth');
     }
 
@@ -59,7 +60,7 @@ class PositionController extends Controller
 
         Position::create($input);
 
-        return redirect()->route('positions.index')->with('success','position updated successfully');
+        return redirect()->route('positions.index')->with('success', 'position updated successfully');
     }
 
     /**
@@ -72,7 +73,7 @@ class PositionController extends Controller
     {
         $position = Position::findOrFail($id);
         $count = Employee::where('position_id', '=', $position->id)->count();
-        return view('positions.show')->withposition($position)->withCount($count);
+        return view('positions.show')->withPosition($position)->withCount($count);
     }
 
     /**
@@ -118,7 +119,7 @@ class PositionController extends Controller
 
         Position::find($id)->update($input);
 
-        return redirect()->route('positions.index')->with('success','position updated successfully');
+        return redirect()->route('positions.index')->with('success', 'position updated successfully');
     }
 
 
@@ -132,6 +133,6 @@ class PositionController extends Controller
     {
         Position::find($id)->delete();
 
-        return redirect()->route('positions.index')->with('success','position deleted successfully');
+        return redirect()->route('positions.index')->with('success', 'position deleted successfully');
     }
 }

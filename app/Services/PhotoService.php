@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Storage;
 class PhotoService
 {
 
-    public function setPhoto ($request) {
-        $image = $request->file('photo');
+    public function savePhotoToStorage ($image) {
         $fileName   = time() . '.' . $image->getClientOriginalExtension();
         $img = Image::make($image->getRealPath());
         $img->resize(300, 300, function ($constraint) {
@@ -23,7 +22,6 @@ class PhotoService
         Storage::disk('local')->put('public/img/faces/'.$fileName, $img, 'public');
         Storage::disk('local')->put('public/img/faces/sm-'.$fileName, $sm_img, 'public');
 
-        return $fileName;
     }
 
 }

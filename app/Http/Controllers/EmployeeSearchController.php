@@ -15,10 +15,10 @@ class EmployeeSearchController extends Controller
         //Log::info($request);
         $minLevel = Position::where('id', '=', $request->input('position_id'))->first()->level;
         $data = Employee::select('name')
-                ->join('positions', 'employees.position_id', '=', 'positions.id')
-                ->where('name', 'LIKE', "%{$request->input('query')}%")
-                ->where('positions.level', '>=',  $minLevel)
-                ->get();
+            ->join('positions', 'employees.position_id', '=', 'positions.id')
+            ->where('name', 'LIKE', "%{$request->input('query')}%")
+            ->where('positions.level', '>=',  $minLevel)
+            ->get();
 
         return response()->json($data);
     }

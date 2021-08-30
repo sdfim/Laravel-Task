@@ -26,7 +26,8 @@ class Position extends Model
         return $this->hasMany(Employee::class, 'position_id', 'id');
     }
 
-    public function getLevel($id) {
+    public function getLevel($id)
+    {
         return Position::findOrFail($id)->level;
     }
 }
